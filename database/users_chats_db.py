@@ -1,11 +1,9 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+
 
 import motor.motor_asyncio
 from config import Config
 
-DATABASE_NAME = "vjbotztechvj"
+DATABASE_NAME = "teraiobot"
 DATABASE_URI = Config.TECH_VJ_DATABASE_URL
 
 class Database:
