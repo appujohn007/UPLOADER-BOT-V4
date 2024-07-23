@@ -41,7 +41,7 @@ from utils import verify_user, check_token, check_verification, get_token
 @Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
     message = update
-    token = await get_token(bot, message.from_user.id, f"https://telegram.me/{Config.TECH_VJ_BOT_USERNAME}?start=")
+    token = await get_token(bot, message.from_user.id, f"https://telegram.me/{TokenConfig.TECH_VJ_BOT_USERNAME}?start=")
     if not await check_verification(bot, message.from_user.id) and TokenConfig.TECH_VJ == True:
         btn = [[
             InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=token)
