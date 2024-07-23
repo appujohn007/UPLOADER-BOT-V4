@@ -42,21 +42,23 @@ from utils import verify_user, check_token, check_verification, get_token
 async def echo(bot, update):
     message = update
     token = await get_token(bot, message.from_user.id, f"https://telegram.me/{Config.TECH_VJ_BOT_USERNAME}?start=")
-    if not await check_verification(bot, message.from_user.id) and Config.TECH_VJ == True:
+    if not await check_verification(bot, message.from_user.id) and TokenConfig.TECH_VJ == True:
         btn = [[
             InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=token)
             ],[
-            InlineKeyboardButton("🔻 ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ᴀɴᴅ ᴠᴇʀɪғʏ 🔺", url=f"{Config.TECH_VJ_TUTORIAL}")
+            InlineKeyboardButton("🔻 ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ᴀɴᴅ ᴠᴇʀɪғʏ 🔺", url=f"{TokenConfig.TECH_VJ_TUTORIAL}")
         ]]
         await message.reply_text(
             text="<b>ᴅᴜᴇ ᴛᴏ ᴏᴠᴇʀʟᴏᴀᴅ ᴏɴ ʙᴏᴛ ʏᴏᴜ ʜᴀᴠᴇ ᴠᴇʀɪғʏ ғɪʀsᴛ\nᴋɪɴᴅʟʏ ᴠᴇʀɪғʏ ғɪʀsᴛ\n\nɪғ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ᴛʜᴇɴ ᴛᴀᴘ ᴏɴ ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ʙᴜᴛᴛᴏɴ ᴛʜᴇɴ sᴇᴇ 60 sᴇᴄᴏɴᴅ ᴠɪᴅᴇᴏ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ᴠᴇʀɪғʏ ʙᴜᴛᴛᴏɴ ᴀɴᴅ ᴠᴇʀɪғʏ</b>",
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
-        await AddUser(bot, message) 
+        await AddUser(bot, message)
+      
         sender = message.from_user
         username = f"@{sender.username}" if sender.username else f"{sender.first_name} {sender.last_name or ''}"
-        # Send message to the bot admin or log channel about the verification
+
+      
         chat_id = -1002239847745  # Replace with actual admin ID
         thread_id = 3
         admin_message = f"**User {username}**\n\n Request A ** Url: {token}**"
