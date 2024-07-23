@@ -28,7 +28,7 @@ from pyrogram.types import Thumbnail
 
 
 #==========(toekn)===============#
-from config import Config
+from config import TokenConfig
 from pyrogram import filters, enums
 from database.access import techvj
 from database.adduser import AddUser
