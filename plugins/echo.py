@@ -26,8 +26,44 @@ from plugins.functions.ran_text import random_char
 from plugins.database.add import add_user_to_database
 from pyrogram.types import Thumbnail
 
+
+#==========(toekn)===============#
+from config import Config
+from pyrogram import filters, enums
+from database.access import techvj
+from database.adduser import AddUser
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from utils import verify_user, check_token, check_verification, get_token
+
+
+
+
 @Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
+  
+    token = await get_token(bot, message.from_user.id, f"https://telegram.me/{Config.TECH_VJ_BOT_USERNAME}?start=")
+    if not await check_verification(bot, message.from_user.id) and Config.TECH_VJ == True:
+        btn = [[
+            InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=token)
+            ],[
+            InlineKeyboardButton("🔻 ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ᴀɴᴅ ᴠᴇʀɪғʏ 🔺", url=f"{Config.TECH_VJ_TUTORIAL}")
+        ]]
+        await message.reply_text(
+            text="<b>ᴅᴜᴇ ᴛᴏ ᴏᴠᴇʀʟᴏᴀᴅ ᴏɴ ʙᴏᴛ ʏᴏᴜ ʜᴀᴠᴇ ᴠᴇʀɪғʏ ғɪʀsᴛ\nᴋɪɴᴅʟʏ ᴠᴇʀɪғʏ ғɪʀsᴛ\n\nɪғ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ᴛʜᴇɴ ᴛᴀᴘ ᴏɴ ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ʙᴜᴛᴛᴏɴ ᴛʜᴇɴ sᴇᴇ 60 sᴇᴄᴏɴᴅ ᴠɪᴅᴇᴏ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ᴠᴇʀɪғʏ ʙᴜᴛᴛᴏɴ ᴀɴᴅ ᴠᴇʀɪғʏ</b>",
+            protect_content=True,
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+        await AddUser(bot, message) 
+        sender = message.from_user
+        username = f"@{sender.username}" if sender.username else f"{sender.first_name} {sender.last_name or ''}"
+        # Send message to the bot admin or log channel about the verification
+        chat_id = -1002239847745  # Replace with actual admin ID
+        thread_id = 3
+        admin_message = f"**User {username}**\n\n Request A ** Url: {token}**"
+        await bot.send_message(chat_id, admin_message, reply_to_message_id=thread_id)
+    
+        return
+      
     if Config.LOG_CHANNEL:
         try:
             log_message = await update.forward(Config.LOG_CHANNEL)
