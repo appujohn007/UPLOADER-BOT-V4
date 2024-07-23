@@ -47,11 +47,11 @@ async def get_verify_shorted_link(link):
                     if data["status"] == "success":
                         return data["shortlink"]
                     else:
-                        logger.error(f"Error: {data['message']}")
+                        print(f"Error: {data['message']}")
                         return f'https://{URL}/shortLink?token={API}&format=json&link={link}'
 
         except Exception as e:
-            logger.error(e)
+            print(e)
             return f'https://{URL}/shortLink?token={API}&format=json&link={link}'
     else:
         url = f'https://{URL}/api'
@@ -65,11 +65,11 @@ async def get_verify_shorted_link(link):
                     if data["status"] == "success":
                         return data['shortenedUrl']
                     else:
-                        logger.error(f"Error: {data['message']}")
+                        print(f"Error: {data['message']}")
                         return f'https://{URL}/api?api={API}&link={link}'
 
         except Exception as e:
-            logger.error(e)
+            print(e)
             return f'{URL}/api?api={API}&link={link}'
 
 async def check_token(bot, userid, token):
