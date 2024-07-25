@@ -4,6 +4,7 @@ hachoir
 numpy
 Pillow
 pyrogram
+pytz
 requests
 tgcrypto
 yt-dlp
