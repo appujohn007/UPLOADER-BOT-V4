@@ -22,7 +22,7 @@ if __name__ == "__main__" :
         api_id=Config.API_ID,
         api_hash=Config.API_HASH,
         plugins=plugins)
-
-    print("🎊 I AM ALIVE 🎊  • Support @NT_BOTS_SUPPORT")
+#new
+    print("🎊 I AM ALIVE 🎊  • Support @botio_devs")
     Ntbots.run()
 
