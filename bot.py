@@ -8,6 +8,10 @@ from plugins.config import Config
 
 from pyrogram import Client as Ntbots
 from pyrogram import filters
+import pyrogram.utils
+
+pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
+
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
