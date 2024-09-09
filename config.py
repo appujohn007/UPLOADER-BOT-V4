@@ -65,7 +65,7 @@ class Config(object):
     TECH_VJ_UPDATES_CHANNEL = int(tech_vj_update_channel) if tech_vj_update_channel and id_pattern.search(tech_vj_update_channel) else None  
     
     # Url Shortner Information 
-    TECH_VJ = bool(environ.get('TECH_VJ', True)) # Set False If you want shortlink off else True
+    TECH_VJ = bool(environ.get('TECH_VJ', False)) # Set False If you want shortlink off else True
     TECH_VJ_URL = environ.get('TECH_VJ_URL', 'modijiurl.com') # your shortlink url domain or url without https://
     TECH_VJ_API = environ.get('TECH_VJ_API', '1f0a7d7bf27a040bf0cebbaaa6478c1f7f0ba46a') # your url shortner api
     TECH_VJ_TUTORIAL = os.environ.get("TECH_VJ_TUTORIAL", "https://telegram.dog/FileStore_l_Bot?start=b8300aaf5b434760035fc09b5ab6631c")
